@@ -49,7 +49,25 @@ git push origin staging
 
 We are almost there, but there are a few steps we need to take before we can launch the application. 
 
-We need to generate a `secret_token`. That can basically be any string you want - the langer the better. We usually use 64 charachters abd there is a rake task we can use. Run the `rake secret` task in your terminal window. That will return a long string of random numbers - that will be our `secret_token`. Open `config/secrets.yml`
+We need to generate a `secret_token` for the `development` enviroment (the soaging and production secret tokens are already set during the app setup process). The `secret_token` can basically be any string you want - the langer the better. We usually use 64 charachters and there is a rake task we can use. Run the `rake secret` task in your terminal window. That will return a long string of random numbers - that will be our `secret_token`. Open `config/secrets.yml` and modify its code to: 
+
+```
+default: &default
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
+
+development: &development
+  secret_key_base: [your generated string]
+
+test:
+  <<: *development
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
+
+```
 
 Okay, so now if you start your rails server you will be able to see the default index page for a rails application. Well done! 
 
@@ -77,7 +95,7 @@ Once you get a confirmation that all is okay you need to migrate the database in
 heroku run rake db:migrate --remote staging
 ```
 
-Okay, there is not much to look at and you probably get a "The page you were looking for doesn't exist.". No suprising at all, we have not created any pages yet. 
+Okay, there is not much to look at and you probably get a "The page you were looking for doesn't exist." wher you try to access the application through it's uri. No suprising at all, we have not created any pages yet. 
 
 suspenders comes with a library for handling static pages - High-voltage (https://github.com/thoughtbot/high_voltage)
 
@@ -88,6 +106,7 @@ HighVoltage.configure do |config|
   config.home_page = 'welcome'
 end
 ```
+That tells the application to set the defaul route to the `welcome` page. So let's create that. 
 
 In your IDE create and edit a file called `welcome.html.erb` in the `app/views/pages` folder. If you want to do this from the command line (and most of us do), you can go ahead and run these commands:
 ```
@@ -95,7 +114,9 @@ touch app/views/pages/welcome.html.erb
 nano app/views/pages/welcome.html.erb
 ```
 
-Add some markup to that file, i e `<h1>Welcome!</h1>` and save the file.
+Add some markup to that file, i e `<h1>Welcome!</h1>` and save the file. Commit your changes and redeploy the application. Also, make sure to push up to your GH repo. 
+
+Now you can access the site again, and you should see the `
 
 
 
