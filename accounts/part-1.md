@@ -140,7 +140,7 @@ Now you can access the site again, and you should see the welcome page. **Still 
 
 #### Collaborating on code and setting up a workflow
 
-Okay, so we have set up the main repository for this particular project. In the example above we've created the repo using the CLI (command line interface) provided by Hub. The git remote `origin` is pointing to that repository. Now, for the purpose of working on the code in a team, we should treat this repo as a repo exclusively to host code that will be used for deployment to live server - in this case first to a staging server and then to a production server.
+Okay, so we have set up the main repository for this particular project. In the example above we've created the repo using the CLI (command line interface) provided by Hub. The git remote `origin` is pointing to that repository. Now, for the purpose of working on the code in a team, we should treat this repo as a repo exclusively to host code that will be used for deployment to live servers - in this case first to a staging server and then to a production server.
 
 In order to be able to contribute code, each developer should fork this repository and create feature branches on his/hers own version of the repo. Code should be submittet to the main repository using Pull Requests from the forked repository. More on that later. 
 
@@ -172,17 +172,17 @@ staging	https://git.heroku.com/accounts-staging.git (fetch)
 staging	https://git.heroku.com/accounts-staging.git (push)
 tochman	git@github.com:tochman/accounts-example.git (fetch)
 tochman	git@github.com:tochman/accounts-example.git (push)
-✔ ~/MakersSweden/accounts [develop L|✔] 
-
 ```
-There is a problem with this configuration. The way I see it we should rename the current `origin` to `upstream` and `tochman` to `origin`. Why? Your `origin` remote should be the repository you are using to store your feature branches and the code you are currently working on. The convention I am used to is to reffer to the main repository as `upstream`. You are going to use that remote quite often. Not to do `git push`, but to do `git pull` from. More on that later.
+There is a problem with this configuration. The way I see it we should rename the current `origin` to `upstream` and `tochman` to `origin`. Why? Your `origin` remote should be the repository you are using to store your feature branches and the code you are currently working on. The convention I am used to is to refer to the main repository as `upstream`. You are going to use that remote quite often. Not to do `git push`, but to do `git pull` from. More on that later.
 
 Okay, lets do the changes to the git remotes. 
 ```
 git remote rename origin upstream
 git remote rename tochman origin
 ```
-With these changes you should be set up to work on the code, make commits to your own fork, pull down the latest code from the main repository AND deploy code to Heroku.
+**With these changes you should be set up to work on the code, make commits to your own fork, pull down the latest code from the main repository AND deploy code to Heroku.**
+
+This concludes the first part of this lecture. In the second part we will be focusing on setting up the testing framewok, discussing the domain for the application and starting the TDD process. 
 
   
 
