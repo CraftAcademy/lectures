@@ -40,6 +40,18 @@ Use `rails generate simple_form:install` to generate the Simple Form configurati
 
 Visit your Heroku dashboard. You should now have two new applications - `accounts-staging` and `accounts-production`. Also, if you access your GitHub account, you should see a new repository - `accounts-example`.
 
+Also, if you check for your git remotes, you should get a response that looks something like this:
+```
+git remote -v
+origin	git@github.com:MakersSweden/accounts-example.git (fetch)
+origin	git@github.com:MakersSweden/accounts-example.git (push)
+production	https://git.heroku.com/accounts-production.git (fetch)
+production	https://git.heroku.com/accounts-production.git (push)
+staging	https://git.heroku.com/accounts-staging.git (fetch)
+staging	https://git.heroku.com/accounts-staging.git (push)
+```
+
+
 Now, add all files to git, create a commit and push up to your repository. Since we have two applications on Heroku we can also create a staging (or develop) branch in git. We will be discussing feature branches and git workflow in separate lectures.
 
 ```
@@ -126,9 +138,55 @@ Add some markup to that file, i e `<h1>Welcome!</h1>` and save the file. Commit 
 Now you can access the site again, and you should see the welcome page. **Still not much of a webbapp but you are well on your way!**
 
 
-#### Collaborating on code
+#### Collaborating on code and setting up a workflow
 
-TODO: Write section
+Okay, so we have set up the main repository for this particular project. In the example above we've created the repo using the CLI (command line interface) provided by Hub. The git remote `origin` is pointing to that repository. Now, for the purpose of working on the code in a team, we should treat this repo as a repo exclusively to host code that will be used for deployment to live server - in this case first to a staging server and then to a production server.
+
+In order to be able to contribute code, each developer should fork this repository and create feature branches on his/hers own version of the repo. Code should be submittet to the main repository using Pull Requests from the forked repository. More on that later. 
+
+Forking a repository is easily done using GitHubs web interface. But since we now have Hub's extended git commands at our disposal, I suggest we make use of the `fork` command. If your git configuration is correct you should be able to do this:
+```
+hub fork
+```
+
+With my setup the response was:
+```
+Updating tochman
+From ssh://github.com/MakersSweden/accounts-example
+ * [new branch]      develop    -> tochman/develop
+ * [new branch]      master     -> tochman/master
+new remote: tochman
+```
+
+Pretty neat, right? Head over to github.com and your profile page to see if a new repo has been added. You should see that in your repository list.
+
+You now should have 4 remotes configured:
+
+```
+git remote -v
+origin	git@github.com:MakersSweden/accounts-example.git (fetch)
+origin	git@github.com:MakersSweden/accounts-example.git (push)
+production	https://git.heroku.com/accounts-production.git (fetch)
+production	https://git.heroku.com/accounts-production.git (push)
+staging	https://git.heroku.com/accounts-staging.git (fetch)
+staging	https://git.heroku.com/accounts-staging.git (push)
+tochman	git@github.com:tochman/accounts-example.git (fetch)
+tochman	git@github.com:tochman/accounts-example.git (push)
+✔ ~/MakersSweden/accounts [develop L|✔] 
+
+```
+There is a problem with this configuration. The way I see it we should rename the current `origin` to `upstream` and `tochman` to `origin`. Why? Your `origin` remote should be the repository you are using to store your feature branches and the code you are currently working on. The convention I am used to is to reffer to the main repository as `upstream`. You are going to use that remote quite often. Not to do `git push`, but to do `git pull` from. More on that later.
+
+Okay, lets do the changes to the git remotes. 
+```
+git remote rename origin upstream
+git remote rename tochman origin
+```
+With these changes you should be set up to work on the code, make commits to your own fork, pull down the latest code from the main repository AND deploy code to Heroku.
+
+  
+
+
 
 
 
