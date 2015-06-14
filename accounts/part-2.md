@@ -166,4 +166,59 @@ I will cover in more detail what we exactly did to define the step definitions a
 
 Using those methods we can tell Cucumber to do certain things (i e `visit '/'`) and to check certain conditions(`expect(page).to have_text 'Welcome!`) just as we was to manually visit the site to check for certain functionality. 
 
+##### RSpec and Unit Testing
+
+For the purpose of unit testing we will be using RSpec. Our application code, that we scaffolded using suspenders, comes with RSpec pre-configured, so there is not much for us to du apart from one thing. We want to edit the `.rspec` file in the applications root folder and make a small change. We want to add the `--documentation` switch to the configuration so we can get a nice and verbose output when we run our tests and not the green or red dots that come with a vanilla setup.
+
+```
+--color
+--format documentation
+--require rails_helper
+```
+
+Okay, we will be using RSpec mainly for unit testing our models, calles model specs behavior of models (usually ActiveRecord-based) in the application. Tagging any context with the metadata `type: :model` treats its examples as model specs. 
+
+But we can start out with writing a request spec to test for the desired behaiviour of root path setup (basically repeat the test we wrote in Cucumber). In the `spec` folder, create a new folder and call it `requests`. Then go ahead and create a new file and call it `root_path_spec.rb`. Add the following code to that file:
+
+```
+RSpec.describe 'GET /', type: :request do
+
+  before(:each) { get '/' }
+
+  it 'routes to root_path' do
+    expect(path).to eql root_path
+  end
+
+  it 'displays Welcome message' do
+    expect(response.body).to include 'Welcome!'
+  end
+
+end
+```
+
+Save and head over to the terminal window and run the `rspec` command. You should get a response that looks something like this: 
+
+```
+$ rspec
+
+I18n
+  does not have missing keys
+  does not have unused keys
+
+GET /
+  routes to root_path
+  displays Welcome message
+
+Finished in 0.31318 seconds (files took 5.38 seconds to load)
+4 examples, 0 failures
+```
+
+Don't mind the `I18n` specs for now - they came with the scaffolded code. The interesting part is that the specifications we wrote for accessing the root path of the app are passing. That was not a surprise but it is still a success!
+
+**We are now set up with the testing frameworks that we will be using for our TDD and BDD process.**
+
+In the next part we will be discussing the domain for the application and starting the TDD process.  
+
+
+
 

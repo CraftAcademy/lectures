@@ -182,7 +182,7 @@ git remote rename tochman origin
 ```
 **With these changes you should be set up to work on the code, make commits to your own fork, pull down the latest code from the main repository AND deploy code to Heroku.**
 
-This concludes the first part of this lecture. In the second part we will be focusing on setting up the testing framewok, discussing the domain for the application and starting the TDD process. 
+This concludes the first part of this lecture. In the second part we will be focusing on setting up the testing framewoks we want to use and try them out.
 
   
 
