@@ -160,4 +160,10 @@ Feature: Accessing the site
 3 steps (3 passed)
 0m0.324s
 ```
- 
+
+**Our first test has passed.**
+I will cover in more detail what we exactly did to define the step definitions at a later stage. For now, lets just accept that Cucumber uses a library called Capybara that provides a set of method's that makes it easy to simulate how a user interacts with your application.
+
+Using those methods we can tell Cucumber to do certain things (i e `visit '/'`) and to check certain conditions(`expect(page).to have_text 'Welcome!`) just as we was to manually visit the site to check for certain functionality. 
+
+
