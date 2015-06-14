@@ -1,6 +1,6 @@
-#### Part 1 - Application set-up
+## Part 1 - Application set-up
 
-Goals:
+### Goals
 - Set up the application
 - Create GitHub repository
 - Create Heroku instances
@@ -61,7 +61,7 @@ git commit -am "first commit - initial setup with suspenders"
 git push origin staging
 ``` 
 
-#### Ready to deploy?
+### Ready to deploy?
 
 We are almost there, but there are a few steps we need to take before we can launch the application. 
 
@@ -89,7 +89,8 @@ Okay, so now if you start your rails server you will be able to see the default 
 
 `rails s` or `foreman start` will fire up the server on your local machine.
  
-#### Ready to deploy now??
+### Ready to deploy now??
+
 There are still some issues with the default configuration that comes with suspenders that we have not addressed yet and the application is not yet ready to deploy to a Heroku server (there is not much to deploy because we only have a default index page to show for your efforts so far, but still...). In order to get this out we need to disable some functions for the time being and set some environmental variables.
 
 First, the application is set up to send out emails and are looking for av enviromental variable called `SMTP_ADDRESS` amog other things. We need to turn that functionality off for now. Open `config/smtp.rb` and comment out every line - do not delete it, you will probably use these settings at a later stage. 
@@ -138,7 +139,7 @@ Add some markup to that file, i e `<h1>Welcome!</h1>` and save the file. Commit 
 Now you can access the site again, and you should see the welcome page. **Still not much of a webbapp but you are well on your way!**
 
 
-#### Collaborating on code and setting up a workflow
+### Collaborating on code and setting up a workflow
 
 Okay, so we have set up the main repository for this particular project. In the example above we've created the repo using the CLI (command line interface) provided by Hub. The git remote `origin` is pointing to that repository. Now, for the purpose of working on the code in a team, we should treat this repo as a repo exclusively to host code that will be used for deployment to live servers - in this case first to a staging server and then to a production server.
 
@@ -181,6 +182,8 @@ git remote rename origin upstream
 git remote rename tochman origin
 ```
 **With these changes you should be set up to work on the code, make commits to your own fork, pull down the latest code from the main repository AND deploy code to Heroku.**
+
+### Wrap up
 
 This concludes the first part of this lecture. In the second part we will be focusing on setting up the testing framewoks we want to use and try them out.
 

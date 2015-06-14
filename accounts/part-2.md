@@ -1,18 +1,27 @@
-### Part 2 - Setting up testing frameworks
+## Part 2 - Setting up testing frameworks
 
 We will be using Rspec and Cucumber to test our application. We will be using an approach that mixes high level acceptance tests and low level unit tests to both drive the development process and make sure that we build a robust and well structures application.
 
-##### Cucumber
+### Goals
+- Install and configure Cucumber
+- Understand the structure of a feature and scenarios
+- Write a Cucumber feature
+- Configure RSpec
+- Write a RSpec request spec
+
+### Cucumber
 
 As you probably already know, Cucumber (https://cucumber.io/) is a framework for writing and executing high level descriptions of your software's functionality. One of Cucumber's most compelling features is that it provides the ability to write these descriptions using plain text - even in your native language. More on that in a moment.
 
 With cucumber you take a user experience based approach to testing your application. Your application has or should have a set of features, right? These features can be used in a set of different ways, by different users, under different circumstances. Some of the features can probabluy also be restricted and only be used/accessed under special conditions.  
 
-So how about describing those features in a structured way that is easily understandable and mapped to the business values and goales thef deliver?
+So how about describing those features in a structured way that is easily understandable and mapped to the business values and goals they deliver?
 
-Does that sound overly complicated? Let me put it this way
+Does that sound overly complicated? Let me put it this way:
 
 > A feature is something that your software does (or should do), and generally corresponds to a user story and a way to tell when it's finished and that it works.
+
+(Not sure that was any better...)
 
 The general format of a feature is:
 
@@ -166,7 +175,7 @@ I will cover in more detail what we exactly did to define the step definitions a
 
 Using those methods we can tell Cucumber to do certain things (i e `visit '/'`) and to check certain conditions(`expect(page).to have_text 'Welcome!`) just as we was to manually visit the site to check for certain functionality. 
 
-##### RSpec and Unit Testing
+### RSpec and Unit Testing
 
 Our application code, that we scaffolded using suspenders, comes with RSpec pre-configured, so there is not much for us to du apart from one thing. We want to edit the `.rspec` file in the applications root folder and make a small change. We want to add the `--format documentation` switch to the configuration so we can get a nice and verbose output when we run our tests and not the green or red dots that come with a vanilla setup.
 
@@ -216,6 +225,8 @@ Finished in 0.31318 seconds (files took 5.38 seconds to load)
 ```
 
 Don't mind the `I18n` specs for now - they came with the scaffolded code. The interesting part is that the specifications we wrote for accessing the root path of the app are passing. That was not a surprise but it is still a success!
+
+### Wrap up
 
 **We are now set up with the testing frameworks that we will be using for our TDD and BDD process.**
 
