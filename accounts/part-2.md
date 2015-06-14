@@ -168,7 +168,9 @@ Using those methods we can tell Cucumber to do certain things (i e `visit '/'`) 
 
 ##### RSpec and Unit Testing
 
-For the purpose of unit testing we will be using RSpec. Our application code, that we scaffolded using suspenders, comes with RSpec pre-configured, so there is not much for us to du apart from one thing. We want to edit the `.rspec` file in the applications root folder and make a small change. We want to add the `--documentation` switch to the configuration so we can get a nice and verbose output when we run our tests and not the green or red dots that come with a vanilla setup.
+Our application code, that we scaffolded using suspenders, comes with RSpec pre-configured, so there is not much for us to du apart from one thing. We want to edit the `.rspec` file in the applications root folder and make a small change. We want to add the `--format documentation` switch to the configuration so we can get a nice and verbose output when we run our tests and not the green or red dots that come with a vanilla setup.
+
+Your `.rspec` file should look like this, so go ahead and make the necessary changes.
 
 ```
 --color
@@ -176,7 +178,7 @@ For the purpose of unit testing we will be using RSpec. Our application code, th
 --require rails_helper
 ```
 
-Okay, we will be using RSpec mainly for unit testing our models, calles model specs behavior of models (usually ActiveRecord-based) in the application. Tagging any context with the metadata `type: :model` treats its examples as model specs. 
+Okay, we will be using RSpec mainly for unit testing our models. mSo called model specs tests the behavior of models (usually ActiveRecord-based) in the application. Tagging any context with the metadata `type: :model` treats its examples as model specs. 
 
 But we can start out with writing a request spec to test for the desired behaiviour of root path setup (basically repeat the test we wrote in Cucumber). In the `spec` folder, create a new folder and call it `requests`. Then go ahead and create a new file and call it `root_path_spec.rb`. Add the following code to that file:
 
