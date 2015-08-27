@@ -3,7 +3,7 @@ require './lib/dog.rb'
 describe Dog do
   subject { Dog.new('basset', 'Fido') }
   
-  it 'instatiates a new dog' do
+  it 'instantiates a new dog' do
     expect(subject).to be_a Dog
   end
   
@@ -28,6 +28,6 @@ describe Dog do
     output = /Jag är en basset och heter Fido/
     expect{subject.say_hi}.to output(output).to_stdout
   end
-  
-  
+    
 end
+
