@@ -3,7 +3,7 @@ require './lib/dog.rb'
 describe Dog do
   subject { Dog.new('basset', 'Fido') }
   
-  it 'instatiates a new dog' do
+  it 'instantiates a new dog' do
     expect(subject).to be_a Dog
   end
   
